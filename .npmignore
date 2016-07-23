@@ -3,7 +3,6 @@
 /.sass-cache/
 /imply-pivot-*.tgz
 /assets/data/*-large.*
-/webstorm
 /resources/
 /config.yaml
 /config-test.yaml

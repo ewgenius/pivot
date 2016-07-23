@@ -1,0 +1,45 @@
+/*
+ * Copyright 2015-2016 Imply Data, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+"use strict";
+const chai_1 = require('chai');
+const Q = require('q');
+const express = require('express');
+const supertest = require('supertest');
+const app_settings_mock_1 = require('../../../common/models/app-settings/app-settings.mock');
+const pivotRouter = require('./pivot');
+var app = express();
+var appSettings = app_settings_mock_1.AppSettingsMock.wikiOnlyWithExecutor();
+app.use((req, res, next) => {
+    req.user = null;
+    req.version = '0.9.4';
+    req.getSettings = (dataCubeOfInterest) => Q(appSettings);
+    next();
+});
+app.use('/', pivotRouter);
+describe('pivot router', () => {
+    it('does a query (value)', (testComplete) => {
+        supertest(app)
+            .get('/')
+            .expect(200)
+            .end((err, res) => {
+            if (err)
+                testComplete(err);
+            chai_1.expect(res.text).to.contain('<!DOCTYPE html>');
+            chai_1.expect(res.text).to.contain('<meta name="description" content="Data Explorer">');
+            testComplete();
+        });
+    });
+});

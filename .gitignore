@@ -10,7 +10,8 @@
 /private/
 /coverage/
 /assets/data/*-large.*
-/webstorm/errors
 /config.yaml
 /config-test.yaml
 /*.sublime-*
+/typings/globals/*
+/typings/index.d.ts
