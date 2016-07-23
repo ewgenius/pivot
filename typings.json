@@ -22,6 +22,7 @@
     "node": "registry:dt/node#6.0.0+20160720070758",
     "nopt": "registry:dt/nopt#3.0.1+20160317120654",
     "numeraljs": "registry:dt/numeraljs#0.0.0+20160316155526",
+    "q": "registry:dt/q#0.0.0+20160613154756",
     "qajax": "registry:dt/qajax#0.0.0+20160317120654",
     "react": "registry:dt/react#0.14.0+20160720060442",
     "react-addons-css-transition-group": "registry:dt/react-addons-css-transition-group#0.14.0+20160316155526",
